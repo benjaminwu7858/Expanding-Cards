@@ -1,15 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
+/* id -> # class -> . */
 * {
     box-sizing: border-box;
+/* 預設為content-box ,改成border 比較好控制每個容器實際大小 */
 }
 body {
-    font-family: 'Rowdies' sans-serif;
+    font-family: 'Muli' sans-serif;
     display: flex;
     flex-direction: column;
+    /* 垂直排序 */
     align-items: center;
+    /* 水平置中 */
     justify-content: center;
+    /* 垂直置中 */
     height: 100vh;
     margin: 0;
     overflow: hidden;
 } 
+
+.container {
+    display: flex;
+    /* 讓容器內的圖片能夠排列在一起 */
+    width: 90vw;
+}
+
+.panel {
+    background-size: cover;
+/* 適合用在background image, 多餘的圖片就cut掉 */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    /* help, wait, no-allowed, zoom-in, grab */
+    flex:0.5;
+    margin: 10px;
+    position: relative;
+    /* static : 正常的FLOW, absolute : 絕對位置, relative 正常flow下的相對位置 */
+    transition: flex 0.7s ease-in;
+    /* https://www.casper.tw/css/2013/08/24/css-transtion-speed/ */
+
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0;
+    /* 透明0-1 */
+
+}
+
+.panel.active {
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+
+    
+    /* responsive 螢幕最大超過480PX時，執行以下...  */
+@media (max-width: 480px) {
+    .container {
+      width: 100vw;
+    }
+     /* : -> pseudo selector https://developer.mozilla.org/zh-TW/docs/Web/CSS/Pseudo-classes */
+
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5) {
+      display: none;
+    }
+    
+  }
